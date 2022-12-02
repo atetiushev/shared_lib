@@ -1,5 +1,7 @@
 package com.example
 
 class TestClass {
-    String msg;
+    boolean flag = false
+    String msg
+    Object value
 }
