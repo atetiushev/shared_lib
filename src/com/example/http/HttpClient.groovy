@@ -24,9 +24,6 @@ class HttpClient {
             error("\nGET from URL: $requestUrl\n  HTTP Status: $resp.statusCode\n  Message: $resp.message\n  Response Body: $resp.body");
         }
 
-        this.printDebug("Request (GET):\n  URL: $requestUrl");
-        this.printDebug("Response:\n  HTTP Status: $resp.statusCode\n  Message: $resp.message\n  Response Body: $resp.body");
-
         return resp;
     }
 
