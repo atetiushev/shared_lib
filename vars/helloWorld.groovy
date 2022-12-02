@@ -1,3 +1,5 @@
-def call(Map config = [:]) {
-    sh "echo Hello ${config.name}. Today is ${config.dayOfWeek}."
+import com.example.TestClass
+
+def call(TestClass param) {
+    sh "echo Hello ${param.msg}. Today is ${param.value}."
 }
