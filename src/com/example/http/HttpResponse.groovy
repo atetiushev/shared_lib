@@ -13,8 +13,8 @@ class HttpResponse {
         this.statusCode = connection.responseCode;
         this.message = connection.responseMessage;
         def stringStatusCode = statusCode.toString()
-        println "Request statusCode: ${statusCode}"
-        println "Request responseMessage: ${message}"
+        echo "Request statusCode: ${statusCode}"
+        echo "Request responseMessage: ${message}"
         if (stringStatusCode.startsWith("20")) {
             this.body = connection.content.text;
         } else {
