@@ -8,9 +8,10 @@ import java.net.HttpURLConnection
 
 class HttpClient {
 
-    HttpResponse doGetHttpRequest(String requestUrl) {
+    HttpResponse doGetHttpRequest(String requestUrl, Map headers = [:]) {
         URL url = new URL(requestUrl);
         HttpURLConnection connection = url.openConnection();
+        setRequestHeaders(connection, headers)
 
         connection.setRequestMethod("GET");
 
@@ -27,4 +28,9 @@ class HttpClient {
         return resp;
     }
 
+    private def setRequestHeaders(HttpURLConnection connection, Map headers = [:]) {
+        headers.each { header, value ->
+            connection.setRequestProperty(header, value)
+        }
+    }
 }
