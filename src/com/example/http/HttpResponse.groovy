@@ -12,14 +12,14 @@ class HttpResponse {
     public HttpResponse(HttpURLConnection connection) {
         this.statusCode = connection.responseCode;
         this.message = connection.responseMessage;
-
-        if (statusCode == 200 || statusCode == 201) {
+        def stringStatusCode = statusCode.toString()
+        println "Request statusCode: ${statusCode}"
+        println "Request responseMessage: ${message}"
+        if (stringStatusCode.startsWith("20")) {
             this.body = connection.content.text;
         } else {
             this.failure = true;
             this.body = connection.getErrorStream().text;
         }
-
-        connection = null; //set connection to null for good measure, since we are done with it
     }
 }
