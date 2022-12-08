@@ -1,8 +1,4 @@
-package com.example.json.converter
-
-
-import java.net.HttpURLConnection
-import java.net.URL
+package com.example.http
 
 class HttpClient {
     def steps
