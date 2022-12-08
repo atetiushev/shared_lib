@@ -1,4 +1,4 @@
-package com.example
+package com.example.model
 
 class TestClass {
     boolean flag = false

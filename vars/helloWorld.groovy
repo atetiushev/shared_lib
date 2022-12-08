@@ -1,4 +1,4 @@
-import com.example.TestClass
+import com.example.model.TestClass
 
 def call(TestClass param) {
     if (param.flag) {

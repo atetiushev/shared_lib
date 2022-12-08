@@ -9,7 +9,7 @@ class HttpResponse {
     Integer statusCode;
     boolean failure = false;
 
-    public HttpResponse(HttpURLConnection connection) {
+    HttpResponse(HttpURLConnection connection) {
         this.statusCode = connection.responseCode;
         this.message = connection.responseMessage;
         def stringStatusCode = statusCode.toString()

@@ -1,12 +1,16 @@
-package com.example.http
+package com.example.json.converter
 
 
 import java.net.HttpURLConnection
 import java.net.URL
 
 class HttpClient {
-
+    def steps
+    HttpClient(steps) {
+        this.steps = steps
+    }
     HttpResponse doGetHttpRequest(String requestUrl, Map headers = [:]) {
+        steps.env.withewe
         URL url = new URL(requestUrl);
         HttpURLConnection connection = url.openConnection();
         setRequestHeaders(connection, headers)
