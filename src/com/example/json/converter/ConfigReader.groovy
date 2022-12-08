@@ -25,8 +25,9 @@ class ConfigReader implements Serializable {
         this.steps.println "parameters " + config.instances.get(0).standalone_jobs.size();
         this.steps.println "repo " + config.instances.get(0).standalone_jobs.get(0).repo;
         this.steps.println "type " + config.instances.get(0).standalone_jobs.get(0).type;
-        this.steps.println "param size " + config.instances.get(0).standalone_jobs.parameters.size();
-        this.steps.println "param " + config.instances.get(0).standalone_jobs.parameters.get(0);
+        this.steps.println "parameters size " + config.instances.get(0).standalone_jobs.parameters.size();
+        this.steps.println "param size " + config.instances.get(0).standalone_jobs.parameters.get(0).size();
+        this.steps.println "param class" + config.instances.get(0).standalone_jobs.parameters.get(0).getClass();
 
     }
 
