@@ -22,6 +22,8 @@ class ConfigReader implements Serializable {
         this.steps.println "try to get object " + config.instances.size();
         this.steps.println "category " + config.instances.get(0).category
         this.steps.println "instance_name " + config.instances.get(0).instance_name
+        this.steps.println "parameters " + config.instances.get(0).parameters.size();
+        this.steps.println "parameters " + config.instances.get(0).parameters.get(0).get("type");
     }
 
 }
