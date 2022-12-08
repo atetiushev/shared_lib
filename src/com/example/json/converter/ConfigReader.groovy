@@ -10,7 +10,7 @@ class ConfigReader implements Serializable {
 
     def parseConfig(content) {
         def jsonSlurper = new JsonSlurper()
-        def parsed = jsonSlurper.parse(content)
+        def parsed = jsonSlurper.parseText(content)
         this.steps.println parsed
     }
 
