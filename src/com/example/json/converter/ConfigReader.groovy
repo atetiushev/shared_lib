@@ -13,12 +13,15 @@ class ConfigReader implements Serializable {
     def parseConfig(content) {
         this.steps.println content
         def jsonSlurper = new JsonSlurper()
-        Config parsed = jsonSlurper.parseText(content) as Config
-        this.steps.println parsed
+        Config config = jsonSlurper.parseText(content) as Config
+        this.steps.println config
+        dealWithConfig(config)
+    }
 
-        this.steps.println "try to get object " + parsed.instances.size();
-        this.steps.println "category " + parsed.instances.get(0).category
-        this.steps.println "category " + parsed.instances.get(0).instance_name
+    def dealWithConfig(Config config) {
+        this.steps.println "try to get object " + config.instances.size();
+        this.steps.println "category " + config.instances.get(0).category
+        this.steps.println "instance_name " + config.instances.get(0).instance_name
     }
 
 }
