@@ -1,4 +1,6 @@
 package com.example.json.converter
+
+import com.example.model.Config
 import groovy.json.JsonSlurper
 
 class ConfigReader implements Serializable {
@@ -11,7 +13,7 @@ class ConfigReader implements Serializable {
     def parseConfig(content) {
         this.steps.println content
         def jsonSlurper = new JsonSlurper()
-        def parsed = jsonSlurper.parseText(content)
+        Config parsed = jsonSlurper.parseText(content) as Config
         this.steps.println parsed
     }
 
