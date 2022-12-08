@@ -1,0 +1,34 @@
+{
+  "instances": [
+    {
+      "instance_name": "some type",
+      "category": "shared",
+      "type": "primary",
+      "standalone_jobs": [
+        {
+          "type": "testType",
+          "repo": "repo",
+          "branch": "master",
+          "jenkins_file": "some file",
+          "credentials":"DES_builduser",
+          "description":"html/APIGEE_Deployer",
+          "parameters":[
+            {
+              "type":"choice",
+              "name":"PLATFORM_VERSION",
+              "value": [
+                "option01", "option02"
+              ],
+              "description":"blabla"
+            },
+            {
+              "type":"boolean",
+              "name":"DRY_RUN",
+              "description":"blabla",
+              "default_value":"false"
+            }
+          ]
+        }
+      ]
+  ]
+}

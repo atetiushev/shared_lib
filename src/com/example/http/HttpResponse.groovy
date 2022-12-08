@@ -13,7 +13,7 @@ class HttpResponse {
         this.statusCode = connection.responseCode;
         this.message = connection.responseMessage;
         def stringStatusCode = statusCode.toString()
-        println 'Just a string - is this working at all - println'
+        /*println 'Just a string - is this working at all - println'
         println "Just a string - is this working at all println 2"
         println "Just a string - is this working at all println with var ${stringStatusCode}"
         echo 'Just a string - is this working at all'
@@ -23,7 +23,7 @@ class HttpResponse {
         echo 'Just a string - is this working at all with variable ${stringStatusCode}'
         println "Just a string - is this working at all println with var ${stringStatusCode}"
         echo "Request statusCode: " + statusCode
-        echo "Request responseMessage: " + message
+        echo "Request responseMessage: " + message*/
         if (stringStatusCode.startsWith("20")) {
             this.body = connection.content.text;
         } else {
