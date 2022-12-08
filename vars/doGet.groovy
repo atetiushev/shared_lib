@@ -4,8 +4,6 @@ import com.example.json.converter.ConfigReader
 
 def call(String url, Map headers = [:]) {
     HttpClient client = new HttpClient(this);
-    sh werte
-    echo
     HttpResponse response = client.doGetHttpRequest(url, headers)
     echo "response status " + response.getStatusCode()
     echo "response " + response.body
