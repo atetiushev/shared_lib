@@ -58,7 +58,7 @@ class HttpClient {
         URL url = new URL(this.@url)
         HttpURLConnection connection = url.openConnection()
         connection.setRequestMethod(this.@requestMethod)
-        setRequestHeaders(connection, this.@headers)
+        setRequestHeaders(connection)
         connection.connect()
 
         HttpResponse resp = new HttpResponse(connection)
