@@ -29,14 +29,14 @@ class HttpClient {
     }
 
     HttpResponse execute() {
-        URL url = new URL(this.@url);
-        HttpURLConnection connection = url.openConnection();
-        connection.setRequestMethod("GET");
-        setRequestHeaders(connection, headers)
-        connection.connect();
+        URL url = new URL(this.@url)
+        HttpURLConnection connection = url.openConnection()
+        connection.setRequestMethod("GET")
+        setRequestHeaders(connection, this.@headers)
+        connection.connect()
 
-        HttpResponse resp = new HttpResponse(connection);
-        if(responseBodyConverter!=null && !resp.failure) {
+        HttpResponse resp = new HttpResponse(connection)
+        if (responseBodyConverter != null && !resp.failure) {
             resp.body = responseBodyConverter.convert(resp.body)
         }
         return resp
@@ -44,8 +44,8 @@ class HttpClient {
 
 
     HttpResponse doGetHttpRequest(String requestUrl, Map headers = [:]) {
-        URL url = new URL(requestUrl);
-        HttpURLConnection connection = url.openConnection();
+        URL url = new URL(requestUrl)
+        HttpURLConnection connection = url.openConnection()
         setRequestHeaders(connection, headers)
 
         connection.setRequestMethod("GET");
@@ -54,7 +54,7 @@ class HttpClient {
         connection.connect();
 
         //parse the response
-        HttpResponse resp = new HttpResponse(connection);
+        HttpResponse resp = new HttpResponse(connection)
 
         if (resp.isFailure()) {
             error("\nGET from URL: $requestUrl\n  HTTP Status: $resp.statusCode\n  Message: $resp.message\n  Response Body: $resp.body");
@@ -63,7 +63,7 @@ class HttpClient {
         return resp;
     }
 
-    private def setRequestHeaders(HttpURLConnection connection, Map headers = [:]) {
+    protected def setRequestHeaders(connection, Map headers = [:]) {
         headers.each { header, value ->
             connection.setRequestProperty(header, value)
         }
