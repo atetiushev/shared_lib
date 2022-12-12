@@ -6,6 +6,6 @@ class JsonHttpClient extends HttpClient {
     }
     JsonHttpClient(script) {
         super(script)
-        this.responseBodyConverter = new JsonConverter();
+        setResponseBodyConverter(new JsonConverter());
     }
 }
