@@ -63,7 +63,7 @@ class HttpClient {
         return resp;
     }
 
-    private def setRequestHeaders(connection, Map headers = [:]) {
+    def setRequestHeaders(HttpURLConnection connection, Map headers = [:]) {
         headers.each { header, value ->
             connection.setRequestProperty(header, value)
         }
