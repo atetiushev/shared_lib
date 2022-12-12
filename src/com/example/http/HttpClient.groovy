@@ -6,7 +6,7 @@ class HttpClient {
     private Map<String, String> headers = [:]
     private Converter responseBodyConverter;
 
-    HttpRequest() {
+    HttpClient() {
     }
 
     HttpClient withUrl(String url) {
