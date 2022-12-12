@@ -3,10 +3,10 @@ package com.example.http
 class HttpClient {
     protected def script
     protected String url
-    private String userName
-    private String password
-    private String userToken
-    private String requestMethod = "GET"
+    protected String userName
+    protected String password
+    protected String userToken
+    protected String requestMethod = "GET"
     protected Map headers = [:]
     protected Converter responseBodyConverter;
 
