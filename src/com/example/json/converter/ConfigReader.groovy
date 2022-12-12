@@ -1,4 +1,4 @@
-package com.example.json.converter
+package com.example.jsonconverter
 
 import com.example.model.Config
 import groovy.json.JsonSlurper
@@ -28,6 +28,7 @@ class ConfigReader implements Serializable {
         this.steps.println "parameters size " + config.instances.get(0).standalone_jobs.parameters.size();
         this.steps.println "param size " + config.instances.get(0).standalone_jobs.parameters.get(0).size();
         this.steps.println "param class" + config.instances.get(0).standalone_jobs.parameters.get(0).getClass();
+        def type = config.instances.get(0).standalone_jobs.parameters.get(0).get(0).get("type");
         this.steps.println "param 0 type" + config.instances.get(0).standalone_jobs.parameters.get(0).get(0).get("type");
     }
 

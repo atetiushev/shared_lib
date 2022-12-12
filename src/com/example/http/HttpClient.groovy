@@ -1,12 +1,49 @@
 package com.example.http
 
 class HttpClient {
-    def steps
-    HttpClient(steps) {
-        this.steps = steps
+    def script
+    private String url;
+    private Map<String, String> headers = [:]
+    private Converter responseBodyConverter;
+
+    HttpRequest() {
     }
+
+    HttpClient withUrl(String url) {
+        this.url = url
+        return this
+    }
+
+    HttpClient withHeader(String header, String value) {
+        this.headers[header] = value
+        return this
+    }
+
+    HttpClient withResponseBodyConverter(Converter converter) {
+        this.responseBodyConverter = converter
+        return this
+    }
+
+    HttpClient(script) {
+        this.script = script
+    }
+
+    HttpResponse execute() {
+        URL url = new URL(this.url);
+        HttpURLConnection connection = url.openConnection();
+        connection.setRequestMethod("GET");
+        setRequestHeaders(connection, headers)
+        connection.connect();
+
+        HttpResponse resp = new HttpResponse(connection);
+        if(responseBodyConverter!=null && !resp.failure) {
+            resp.body = responseBodyConverter.convert(resp.body)
+        }
+        return resp
+    }
+
+
     HttpResponse doGetHttpRequest(String requestUrl, Map headers = [:]) {
-        steps.env.withewe
         URL url = new URL(requestUrl);
         HttpURLConnection connection = url.openConnection();
         setRequestHeaders(connection, headers)

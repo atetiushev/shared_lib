@@ -4,7 +4,7 @@ import java.net.HttpURLConnection
 
 class HttpResponse {
 
-    String body;
+    def body;
     String message;
     Integer statusCode;
     boolean failure = false;
