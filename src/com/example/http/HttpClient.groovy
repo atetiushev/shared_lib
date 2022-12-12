@@ -1,35 +1,35 @@
 package com.example.http
 
 class HttpClient {
-    def script
-    private String url;
-    private Map<String, String> headers = [:]
+    protected def script
+    protected String url;
+    protected Map<String, String> headers = [:]
     protected Converter responseBodyConverter;
 
     HttpClient() {
     }
 
     HttpClient withUrl(String url) {
-        this.url = url
+        this.@url = url
         return this
     }
 
     HttpClient withHeader(String header, String value) {
-        this.headers[header] = value
+        this.@headers[header] = value
         return this
     }
 
     HttpClient withResponseBodyConverter(Converter converter) {
-        this.responseBodyConverter = converter
+        this.@responseBodyConverter = converter
         return this
     }
 
     HttpClient(script) {
-        this.script = script
+        this.@script = script
     }
 
     HttpResponse execute() {
-        URL url = new URL(this.url);
+        URL url = new URL(this.@url);
         HttpURLConnection connection = url.openConnection();
         connection.setRequestMethod("GET");
         setRequestHeaders(connection, headers)
