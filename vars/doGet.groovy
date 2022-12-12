@@ -8,7 +8,9 @@ import com.example.json.converter.ConfigReader
 def call(String url, Map headers = [:]) {
 
     HttpResponse response = new JsonHttpClient(this).
-            withUrl(url).
+            withUrl(url).withRequestMethod("GET").
+            withUserName("user").
+            withPassword("password").
             execute()
    // HttpResponse response = client.doGetHttpRequest(url, headers)
     echo "response status " + response.getStatusCode()

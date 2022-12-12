@@ -2,15 +2,29 @@ package com.example.http
 
 class HttpClient {
     protected def script
-    protected String url;
+    protected String url
+    private String userName
+    private String password
+    private String userToken
+    private String requestMethod = "GET"
     protected Map headers = [:]
     protected Converter responseBodyConverter;
 
     HttpClient() {
+        this(null)
+    }
+
+    HttpClient(script) {
+        this.@script = script
     }
 
     HttpClient withUrl(String url) {
         this.@url = url
+        return this
+    }
+
+    HttpClient withRequestMethod(String requestMethod) {
+        this.@requestMethod = requestMethod
         return this
     }
 
@@ -24,14 +38,26 @@ class HttpClient {
         return this
     }
 
-    HttpClient(script) {
-        this.@script = script
+    HttpClient withUserName(String userName) {
+        this.@userName = userName
+        return this
+    }
+
+    HttpClient withPassword(String password) {
+        this.@password = password
+        return this
+    }
+
+    HttpClient withUserToken(String userToken) {
+        this.@userName = null
+        this.@password = null
+        return this
     }
 
     HttpResponse execute() {
         URL url = new URL(this.@url)
         HttpURLConnection connection = url.openConnection()
-        connection.setRequestMethod("GET")
+        connection.setRequestMethod(this.@requestMethod)
         setRequestHeaders(connection, this.@headers)
         connection.connect()
 
@@ -42,30 +68,21 @@ class HttpClient {
         return resp
     }
 
-
-    HttpResponse doGetHttpRequest(String requestUrl, Map headers = [:]) {
-        URL url = new URL(requestUrl)
-        HttpURLConnection connection = url.openConnection()
-        setRequestHeaders(connection, headers)
-
-        connection.setRequestMethod("GET");
-
-        //get the request
-        connection.connect();
-
-        //parse the response
-        HttpResponse resp = new HttpResponse(connection)
-
-        if (resp.isFailure()) {
-            error("\nGET from URL: $requestUrl\n  HTTP Status: $resp.statusCode\n  Message: $resp.message\n  Response Body: $resp.body");
-        }
-
-        return resp;
-    }
-
-    def setRequestHeaders(HttpURLConnection connection, Map headers = [:]) {
+    def setRequestHeaders(HttpURLConnection connection) {
+        setBasicAuth()
         headers.each { header, value ->
             connection.setRequestProperty(header, value)
+        }
+    }
+
+    def setBasicAuth() {
+        String token = this.@userToken
+        if (this.@userName && this.@password) {
+            token = this.@userName + ":"+ this.@password
+        }
+        if(token) {
+            String encoded =  Base64.getEncoder().encode(token.getBytes("UTF-8"))
+            this.@headers["Authorization"] = "Basic " + encoded
         }
     }
 }
