@@ -4,7 +4,7 @@ class HttpClient {
     def script
     private String url;
     private Map<String, String> headers = [:]
-    private Converter responseBodyConverter;
+    protected Converter responseBodyConverter;
 
     HttpClient() {
     }
