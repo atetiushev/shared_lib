@@ -1,4 +1,4 @@
-package com.example.jsonconverter
+package com.example.json.converter
 
 import com.example.model.Config
 import groovy.json.JsonSlurper
