@@ -55,7 +55,7 @@ class HttpClient {
         return this
     }
 
-    HttpClient withTimeout(int v) {
+    HttpClient withTimeout(int timeout) {
         this.timeout = timeout
         return this
     }
