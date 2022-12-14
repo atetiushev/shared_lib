@@ -9,6 +9,7 @@ class HttpClient {
     protected String requestMethod = "GET"
     protected Map headers = [:]
     protected Converter responseBodyConverter;
+    protected int timeout = 30000;//in ms
 
     HttpClient() {
         this(null)
@@ -54,13 +55,19 @@ class HttpClient {
         return this
     }
 
+    HttpClient withTimeout(int v) {
+        this.timeout = timeout
+        return this
+    }
+
     HttpResponse execute() {
         URL url = new URL(this.@url)
         HttpURLConnection connection = url.openConnection()
         connection.setRequestMethod(this.@requestMethod)
-        connection.setConnectTimeout(30000)
-        connection.setReadTimeout(30000)
+        connection.setConnectTimeout(this.timeout)
+        connection.setReadTimeout(this.timeout)
         setRequestHeaders(connection)
+
         connection.connect()
 
         HttpResponse resp = new HttpResponse(connection)

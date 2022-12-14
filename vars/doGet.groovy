@@ -1,7 +1,4 @@
-import com.example.http.Converter
-import com.example.http.HttpClient
 import com.example.http.HttpResponse
-import com.example.http.JsonConverter
 import com.example.http.JsonHttpClient
 import com.example.json.converter.ConfigReader
 
@@ -9,6 +6,7 @@ def call(String url, Map headers = [:]) {
 
     HttpResponse response = new JsonHttpClient(this).
             withUrl(url).withRequestMethod("GET").
+            withTimeout(5000).
             withUserName("user").
             withPassword("password").
             execute()
