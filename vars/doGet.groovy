@@ -6,7 +6,7 @@ def call(String url, Map headers = [:]) {
 
     HttpResponse response = new JsonHttpClient(this).
             withUrl(url).withRequestMethod("GET").
-            withTimeout(5000).
+            withTimeout(1000).
             withUserName("user").
             withPassword("password").
             execute()
